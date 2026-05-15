@@ -1,0 +1,29 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio
+.vs/
+
+# Rider
+.idea/
+
+# User-specific files
+*.user
+*.suo
+
+# Logs
+*.log
+
+# ASP.NET Core
+appsettings.Development.json
+
+# Publish output
+publish/
+
+# NuGet packages
+*.nupkg
+
+# OS files
+.DS_Store
+Thumbs.db

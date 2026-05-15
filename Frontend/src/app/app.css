@@ -1,0 +1,222 @@
+:host {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #eee;
+}
+
+.header h1 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.header p {
+  color: #7f8c8d;
+  font-weight: bold;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  border-color: #3498db;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.badge {
+  background-color: #3498db;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.card-body p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: #34495e;
+}
+
+.btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.error-banner {
+  background-color: #ffeaa7;
+  color: #d63031;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 5px solid #d63031;
+  margin-bottom: 30px;
+}
+
+.loader-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.spinner {
+  border: 4px solid rgba(0,0,0,0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #3498db;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.controls-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid #e0e0e0;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.season-select {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.search-input:focus,
+.season-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.badges-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  padding: 0;
+}
+
+.fav-btn:hover {
+  transform: scale(1.2);
+}
+
+.fav-active {
+  color: #f1c40f;
+}
+
+.card-favorited {
+  border-color: #f1c40f;
+  background-color: #fffdf5;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px dashed #ccc;
+}
+
+@media (max-width: 640px) {
+  .controls-bar,
+  .pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

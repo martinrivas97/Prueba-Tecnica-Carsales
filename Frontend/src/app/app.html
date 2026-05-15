@@ -1,0 +1,79 @@
+<main class="main-container">
+  <header class="header">
+    <h1>Rick & Morty</h1>
+    <p>Prueba Técnica Carsales</p>
+  </header>
+
+  @if (servicioEpisodios.mensajeError()) {
+    <div class="error-banner">
+      <strong>¡Ups!</strong> {{ servicioEpisodios.mensajeError() }}
+    </div>
+  }
+
+  <div class="controls-bar">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Buscar episodio por nombre..."
+      (input)="buscarPorNombre($event)"
+      [value]="servicioEpisodios.terminoBusqueda()">
+
+    <select class="season-select" (change)="filtrarPorTemporada($event)" [value]="servicioEpisodios.temporadaSeleccionada()">
+      <option value="Todas">Todas las temporadas</option>
+      <option value="S01">Temporada 1</option>
+      <option value="S02">Temporada 2</option>
+      <option value="S03">Temporada 3</option>
+      <option value="S04">Temporada 4</option>
+      <option value="S05">Temporada 5</option>
+    </select>
+  </div>
+
+  @if (servicioEpisodios.cargando()) {
+    <div class="loader-container">
+      <div class="spinner"></div>
+      <p>Cargando información desde el servidor...</p>
+    </div>
+  } @else {
+    <section class="grid-container">
+      @for (episodio of servicioEpisodios.episodiosOrdenados(); track episodio.id)  {
+        <article class="card" [class.card-favorited]="servicioEpisodios.esFavorito(episodio.id)">
+          <div class="card-header">
+            <h3>{{ episodio.nombre }}</h3>
+            <div class="badges-container">
+              <span class="badge">{{ episodio.codigoEpisodio }}</span>
+              <button
+                class="fav-btn"
+                [class.fav-active]="servicioEpisodios.esFavorito(episodio.id)"
+                (click)="servicioEpisodios.alternarFavorito(episodio)"
+                title="Guardar en favoritos">
+                ★
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p><strong>Fecha de estreno:</strong> {{ episodio.fechaEstreno }}</p>
+            <p><strong>Personajes en el episodio:</strong> {{ episodio.personajes.length }}</p>
+          </div>
+        </article>
+      } @empty {
+        <div class="empty-state">No hay episodios que coincidan con tu búsqueda.</div>
+      }
+    </section>
+  }
+
+  <footer class="pagination">
+    <button
+      class="btn"
+      [disabled]="servicioEpisodios.paginaActual() === 1 || servicioEpisodios.cargando()"
+      (click)="servicioEpisodios.cargarEpisodios(servicioEpisodios.paginaActual() - 1)">
+      &laquo; Anterior
+    </button>
+    <span class="page-info">Página {{ servicioEpisodios.paginaActual() }} de {{ servicioEpisodios.totalPaginas() }}</span>
+    <button
+      class="btn"
+      [disabled]="servicioEpisodios.paginaActual() === servicioEpisodios.totalPaginas() || servicioEpisodios.cargando()"
+      (click)="servicioEpisodios.cargarEpisodios(servicioEpisodios.paginaActual() + 1)">
+      Siguiente &raquo;
+    </button>
+  </footer>
+</main>
